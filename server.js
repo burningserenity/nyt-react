@@ -1,28 +1,17 @@
-const express = require("express");
-const bodyParser = require("body-parser");
-const mongoose = require("mongoose");
-const routes = require("./routes");
+const express = require('express');
+const bodyParser = require('body-parser');
+const path = require('path');
+const port = process.env.PORT || 8080;
+
 const app = express();
-const port = process.env.PORT || 3001;
 
-// Configure body parser for AJAX requests
-app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-// Serve static assets
-app.use(express.static("client/build"));
-// Routes
-app.use(routes);
 
-// Mongoose
-mongoose.Promise = global.Promise;
-mongoose.connect(
-    process.env.MONGODB_URI || "mongodb://localhost/nytreact",
-    {
-        useMongoClient: true
-    }
-);
+app.use(express.static(path.join(__dirname, 'dist')));
 
-// GO!
-app.listen(port, () => {
-    console.log(`🌎  ==> Listening on port ${port}...`)
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '/views/index.html'));
 });
+
+app.listen(port, () => console.log(`Listening on port ${port}...`));
