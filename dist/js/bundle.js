@@ -3032,14 +3032,52 @@ var App = function (_Component) {
     _inherits(App, _Component);
 
     function App() {
+        var _ref;
+
+        var _temp, _this, _ret;
+
         _classCallCheck(this, App);
 
-        return _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this));
+        for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+            args[_key] = arguments[_key];
+        }
+
+        return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = App.__proto__ || Object.getPrototypeOf(App)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
+            q: "stuff",
+            begin_date: "1985",
+            end_date: "2001",
+            results: null
+        }, _this.onTopicChange = function (event) {
+            console.log(event.target.value);
+            _this.setState({
+                q: event.target.value
+            });
+        }, _this.onStartChange = function (event) {
+            console.log(event.target.value);
+            _this.setState({
+                begin_date: event.target.value
+            });
+        }, _this.onEndChange = function (event) {
+            console.log(event.target.value);
+            _this.setState({
+                end_date: event.target.value
+            });
+        }, _this.onResultsHandler = function (res) {
+            var url = 'https://api.nytimes.com/svc/search/v2/articlesearch.json?api-key=eafa397532be49299f095815f8165bde&q=' + _this.state.q + '&begin_date=' + _this.state.begin_date + '0101&end_date=' + _this.state.end_date + '1231';
+            __WEBPACK_IMPORTED_MODULE_6_axios___default.a.get(url).then(function (res) {
+                _this.setState({
+                    results: res.data.response.docs.map(function (doc) {
+                        return doc.headline.main;
+                    })
+                });
+            });
+        }, _temp), _possibleConstructorReturn(_this, _ret);
     }
 
     _createClass(App, [{
         key: 'render',
         value: function render() {
+            console.log(this.state.results);
             return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 'div',
                 { className: 'container' },
@@ -3050,7 +3088,11 @@ var App = function (_Component) {
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                         __WEBPACK_IMPORTED_MODULE_5__components_Cirrus__["a" /* Col */],
                         { size: '12' },
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__components_Cards__["b" /* SimpleCard */], null)
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__components_Cards__["b" /* SimpleCard */], {
+                            q: this.state.q, changedHandler: this.onTopicChange,
+                            begin_date: this.state.begin_date, changedSHandler: this.onStartChange,
+                            end_date: this.state.end_date, changedEHandler: this.onEndChange,
+                            clicked: this.onResultsHandler })
                     )
                 ),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -24934,7 +24976,7 @@ module.exports = function spread(callback) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
 
 
-var SimpleCard = function SimpleCard() {
+var SimpleCard = function SimpleCard(props) {
     return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
         "div",
         { className: "card" },
@@ -24958,7 +25000,7 @@ var SimpleCard = function SimpleCard() {
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 "div",
                 { className: "input-control" },
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("input", { type: "text", name: "topic" })
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("input", { type: "text", name: "topic", value: props.q, onChange: props.changedHandler })
             ),
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 "h6",
@@ -24968,7 +25010,7 @@ var SimpleCard = function SimpleCard() {
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 "div",
                 { className: "input-control" },
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("input", { type: "text", name: "startYear" })
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("input", { type: "text", name: "startYear", value: props.begin_date, onChange: props.changedSHandler })
             ),
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 "h6",
@@ -24978,7 +25020,7 @@ var SimpleCard = function SimpleCard() {
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 "div",
                 { className: "input-control" },
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("input", { type: "text", name: "endYear" })
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("input", { type: "text", name: "endYear", value: props.end_date, onChange: props.changedEHandler })
             )
         ),
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -24986,7 +25028,7 @@ var SimpleCard = function SimpleCard() {
             { className: "action-bar center" },
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 "button",
-                { className: "btn" },
+                { onClick: props.clicked, className: "btn" },
                 "Go"
             )
         )

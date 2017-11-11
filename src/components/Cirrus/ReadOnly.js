@@ -1,8 +1,8 @@
 import React from "react";
 
-ReadOnly = (title) => (
+ReadOnly = ({title}) => (
     <div className="form-group">
-        <input type="Search" className="form-group-input" placeholder={{title}} readonly="" />
+        <input type="Search" className="form-group-input" placeholder={title} readonly="" />
         <button className="form-group-btn">Save</button>
     </div>
 )
