@@ -3045,9 +3045,31 @@ var App = function (_Component) {
                 { className: 'container' },
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__components_Header_Header__["a" /* Header */], null),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    __WEBPACK_IMPORTED_MODULE_5__components_Cirrus__["a" /* Row */],
+                    __WEBPACK_IMPORTED_MODULE_5__components_Cirrus__["b" /* Row */],
                     null,
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__components_Cards__["a" /* SimpleCard */], null)
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        __WEBPACK_IMPORTED_MODULE_5__components_Cirrus__["a" /* Col */],
+                        { size: '12' },
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__components_Cards__["b" /* SimpleCard */], null)
+                    )
+                ),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    __WEBPACK_IMPORTED_MODULE_5__components_Cirrus__["b" /* Row */],
+                    null,
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        __WEBPACK_IMPORTED_MODULE_5__components_Cirrus__["a" /* Col */],
+                        { size: '12' },
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__components_Cards__["a" /* ResultsCard */], { heading: 'Results' })
+                    )
+                ),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    __WEBPACK_IMPORTED_MODULE_5__components_Cirrus__["b" /* Row */],
+                    null,
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        __WEBPACK_IMPORTED_MODULE_5__components_Cirrus__["a" /* Col */],
+                        { size: '12' },
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__components_Cards__["a" /* ResultsCard */], { heading: 'Saved' })
+                    )
                 )
             );
         }
@@ -24896,7 +24918,10 @@ module.exports = function spread(callback) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__SimpleCard__ = __webpack_require__(102);
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_0__SimpleCard__["a"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "b", function() { return __WEBPACK_IMPORTED_MODULE_0__SimpleCard__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ResultsCard__ = __webpack_require__(109);
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_1__ResultsCard__["a"]; });
+
 
 
 /***/ }),
@@ -25002,11 +25027,11 @@ var Header = function Header() {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Col__ = __webpack_require__(106);
-/* unused harmony namespace reexport */
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_0__Col__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Container__ = __webpack_require__(107);
 /* unused harmony namespace reexport */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Row__ = __webpack_require__(108);
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_2__Row__["a"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "b", function() { return __WEBPACK_IMPORTED_MODULE_2__Row__["a"]; });
 
 
 
@@ -25016,17 +25041,17 @@ var Header = function Header() {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* unused harmony export Col */
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Col; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
 
 
-var Col = function Col(size, children) {
+var Col = function Col(_ref) {
+    var size = _ref.size,
+        children = _ref.children;
     return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
         "div",
-        { className: size.split(" ").map(function (size) {
-                return "col-" + size;
-            }).join(" ") },
+        { className: "col-" + 12 },
         children
     );
 };
@@ -25068,6 +25093,39 @@ var Row = function Row(_ref) {
         "div",
         { className: "row" + (fluid ? "-fluid" : "") },
         children
+    );
+};
+
+/***/ }),
+/* 109 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ResultsCard; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+
+
+var ResultsCard = function ResultsCard(_ref) {
+    var heading = _ref.heading,
+        children = _ref.children;
+    return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+        "div",
+        { className: "card" },
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            "div",
+            { className: "card-head" },
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                "p",
+                { className: "card-head-title" },
+                heading
+            )
+        ),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            "div",
+            { className: "content" },
+            children
+        )
     );
 };
 

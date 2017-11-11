@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { render } from 'react-dom';
-import { SimpleCard } from './components/Cards';
+import { SimpleCard, ResultsCard } from './components/Cards';
 import { Header } from './components/Header/Header';
 import { Row, Col, Container, ReadOnly } from './components/Cirrus';
 
@@ -17,7 +17,21 @@ class App extends Component {
             <div className="container">
                 <Header />
                 <Row>
-                    <SimpleCard />
+                    <Col size="12">
+                        <SimpleCard />
+                    </Col>
+                </Row>
+                <Row>
+                    <Col size="12">
+                        <ResultsCard heading="Results">
+                        </ResultsCard>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col size="12">
+                        <ResultsCard heading="Saved">
+                        </ResultsCard>
+                    </Col>
                 </Row>
             </div>
         )
